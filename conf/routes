@@ -15,10 +15,11 @@ GET     /about                      controllers.HomeController.about
 GET     /welcome/:name/:lastName    controllers.HomeController.welcome(name, lastName)
 
 GET     /books                      controllers.BooksController.index
+GET     /books/create               controllers.BooksController.create
 GET     /books/:id                  controllers.BooksController.show(id:Int)
 GET     /books/edit/:id             controllers.BooksController.edit(id:Int)
-POST    /books/edit/                controllers.BooksController.update
-POST    /books/create               controllers.BooksController.save
+POST    /books/edit                 controllers.BooksController.update
+POST    /books/save                 controllers.BooksController.save
 GET     /books/delete/:id           controllers.BooksController.destory(id:Int)
 
 

@@ -3,16 +3,23 @@ package model
 import scala.collection.mutable.Set
 
 case class Book(id: Int, title: String, price: Int, author: String) {
+  def this() = {
+    this(id=0, title="", price=0, author="")
+  }
+}
+
+
+object Book {
   val books: Set[Book] = Set(
-    Book(1, "C++", 20, "ABC"),
-    Book(2, "Java", 30, "XYZ")
+    new Book(1, "C++", 20, "ABC"),
+    new Book(2, "Java", 30, "XYZ")
   )
 
   def allBooks: Set[Book] = {
     books
   }
 
-  def findById(id: Int): Option[Book] = {
+  def findById(id: Int) = {
     books.find(_.id == id)
   }
 
@@ -23,5 +30,4 @@ case class Book(id: Int, title: String, price: Int, author: String) {
   def remove(book: Book) = {
     books.remove(book)
   }
-
 }

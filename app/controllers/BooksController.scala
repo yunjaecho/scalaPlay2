@@ -1,19 +1,29 @@
 package controllers
 
 import javax.inject.{Inject, Singleton}
+
+import scala.collection.mutable.Set
+import model.Book
+import play.data.FormFactory
 import play.api.mvc.{AbstractController, ControllerComponents}
 import services.Counter
+
 
 @Singleton
 class BooksController @Inject() (cc: ControllerComponents,
                                  counter: Counter) extends AbstractController(cc) {
 
+  @Inject
+  var formFactory: FormFactory = _
+
   def index = Action {
-    Ok("ok")
+    val books: Set[Book] = Book.allBooks
+    Ok(views.html.books.index.render(books))
   }
 
   def create = Action {
-    Ok("")
+    val bookForm = formFactory.form(classOf[Book])
+    Ok(views.html.books.create.render(bookForm))
   }
 
   def save = Action {
